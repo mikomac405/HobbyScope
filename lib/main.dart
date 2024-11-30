@@ -7,6 +7,7 @@ import 'package:hobbyscope/pages/recover_password.dart';
 import 'package:hobbyscope/pages/register.dart';
 import 'package:provider/provider.dart';
 
+
 Future main() async {
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();

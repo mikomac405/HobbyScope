@@ -62,7 +62,10 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               logout(context);
             },
-            child: const Text("Logout"))
+            child: const Text("Logout")),
+        ElevatedButton(
+            onPressed: () => getQuestions(context),
+            child: Text('Pobierz pytania')),
       ],
     );
   }
