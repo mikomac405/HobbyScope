@@ -52,20 +52,19 @@ class _HomePageState extends State<HomePage> {
               sendVerificationMail(context);
             },
             child: const Text("Send verification email"),
-          ) else ElevatedButton(
-          onPressed: () {
-            //sendVerificationMail(context);
-          },
-          child: const Text("Look for a hobby"),
-        ),
+          )
+        else
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(context, '/qna', (_) => false);
+            },
+            child: const Text("Look for a hobby"),
+          ),
         ElevatedButton(
             onPressed: () {
               logout(context);
             },
             child: const Text("Logout")),
-        ElevatedButton(
-            onPressed: () => getQuestions(context),
-            child: Text('Pobierz pytania')),
       ],
     );
   }

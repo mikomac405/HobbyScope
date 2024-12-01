@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hobbyscope/pages/home.dart';
 import 'package:hobbyscope/pages/login.dart';
+import 'package:hobbyscope/pages/question.dart';
 import 'package:hobbyscope/pages/recover_password.dart';
 import 'package:hobbyscope/pages/register.dart';
 import 'package:provider/provider.dart';
 
+import 'backend.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
@@ -27,7 +29,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<Account>(create: (context) => Account(client)),
-        Provider<Storage>(create: (context) => Storage(client))
+        Provider<Databases>(create: (context) => Databases(client)),
+        Provider<Functions>(create: (context) => Functions(client)),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -41,7 +44,8 @@ class MyApp extends StatelessWidget {
           '/': (context) => const HomePage(),
           '/login': (context) => const LoginPage(),
           '/register': (context) => const RegisterPage(),
-          '/recovery': (context) => const RecoverPasswordPage()
+          '/recovery': (context) => const RecoverPasswordPage(),
+          '/qna': (context) => const QuestionPage()
         },
         //home: const MyHomePage(title: 'Login'),
       ),
