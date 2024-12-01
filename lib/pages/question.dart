@@ -3,7 +3,7 @@ import 'package:hobbyscope/backend.dart';
 import 'package:hobbyscope/utils.dart';
 
 class QuestionPage extends StatefulWidget {
-  const QuestionPage({Key? key}) : super(key: key);
+  const QuestionPage({super.key});
 
   @override
   _QuestionPageState createState() => _QuestionPageState();
@@ -28,9 +28,16 @@ class _QuestionPageState extends State<QuestionPage> {
 
   void fetchQuestions() async {
     // Fetch the questions using the context
-    List<Question> questions = await getQuestions(context);
+    //List<Question> questions = await getQuestions(context);
+
+    List<Question> mockQuestions = [
+      Question("Czy lubisz programować?", ["intelectual"]),
+      Question("Czy lubisz sport?", ["sport"]),
+      Question("Czy lubisz rysować?", ["artistic"]),
+    ];
+
     setState(() {
-      qna = QuestionsAndAnswers(questions);
+      qna = QuestionsAndAnswers(mockQuestions); //questions
       currentState = PageState.displayingQuestion;
     });
   }
@@ -46,7 +53,9 @@ class _QuestionPageState extends State<QuestionPage> {
       });
 
       // Submit the answers and get the response
-      String result = await submitQuestion(context, qna!.answers);
+      // String result = await submitQuestion(context, qna!.answers);
+
+      String result = "Twoje hobby to: Skakanie wśród jednorożców"; //result
 
       setState(() {
         response = result;
@@ -71,19 +80,19 @@ class _QuestionPageState extends State<QuestionPage> {
             Text(qna!.questions[qna!.index].question),
             ElevatedButton(
                 onPressed: () => updateAnswer(1.0, context),
-                child: const Text("Yes")),
+                child: const Text("Tak")),
             ElevatedButton(
                 onPressed: () => updateAnswer(0.75, context),
-                child: const Text("Maybe yes")),
+                child: const Text("Raczej tak")),
             ElevatedButton(
                 onPressed: () => updateAnswer(0.5, context),
-                child: const Text("I don't know")),
+                child: const Text("Nie wiem")),
             ElevatedButton(
                 onPressed: () => updateAnswer(0.25, context),
-                child: const Text("Maybe no")),
+                child: const Text("Raczej nie")),
             ElevatedButton(
                 onPressed: () => updateAnswer(0.0, context),
-                child: const Text("No")),
+                child: const Text("Nie")),
           ],
         );
         break;

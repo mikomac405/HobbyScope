@@ -14,18 +14,27 @@ String answerCollectionId = dotenv.env['ANSWER_COLLECTION_ID']!;
 String questionCollectionId = dotenv.env['QUESTIONS_COLLECTION_ID']!;
 String functionId = dotenv.env["FUNCTION_ID"]!;
 
-Future<void> login(BuildContext context, String email, String password) async {
-  try {
-    await context
-        .read<Account>()
-        .createEmailPasswordSession(email: email, password: password);
-    if (!context.mounted) return;
-    Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
-  } on AppwriteException catch (e) {
-    logger.e("${e.code}, ${e.type}, ${e.message}");
-    if (!context.mounted) return;
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(e.message!)));
+// Future<void> login(BuildContext context, String email, String password) async {
+//   try {
+//     await context
+//         .read<Account>()
+//         .createEmailPasswordSession(email: email, password: password);
+//     if (!context.mounted) return;
+//     Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
+//   } on AppwriteException catch (e) {
+//     logger.e("${e.code}, ${e.type}, ${e.message}");
+//     if (!context.mounted) return;
+//     ScaffoldMessenger.of(context)
+//         .showSnackBar(SnackBar(content: Text(e.message!)));
+//   }
+// }
+
+void login(BuildContext context, String email, String password) {
+  if (email == "test@example.com" && password == "zaq1@WSX") {
+    Navigator.pushNamed(context, '/');
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Invalid email or password!")));
   }
 }
 
@@ -36,19 +45,19 @@ Future<void> register(BuildContext context, String userName, String email,
         const SnackBar(content: Text("Passwords doesn't match!")));
     return;
   }
-  try {
-    await context.read<Account>().create(
-        userId: ID.unique(), email: email, password: password, name: userName);
-    if (!context.mounted) return;
-    await login(context, email, password);
-    if (!context.mounted) return;
-    Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
-  } on AppwriteException catch (e) {
-    logger.e("${e.code}, ${e.type}, ${e.message}");
-    if (!context.mounted) return;
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(e.message!)));
-  }
+  // try {
+  //   await context.read<Account>().create(
+  //       userId: ID.unique(), email: email, password: password, name: userName);
+  //   if (!context.mounted) return;
+  //   await login(context, email, password);
+  //   if (!context.mounted) return;
+  //   Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
+  // } on AppwriteException catch (e) {
+  //   logger.e("${e.code}, ${e.type}, ${e.message}");
+  //   if (!context.mounted) return;
+  //   ScaffoldMessenger.of(context)
+  //       .showSnackBar(SnackBar(content: Text(e.message!)));
+  // }
 }
 
 Future<void> logout(BuildContext context) async {

@@ -24,9 +24,27 @@ class _HomePageState extends State<HomePage> {
 
   void fetchUser() async {
     try {
-      models.User fetchedUser = await context.read<Account>().get();
+      //models.User fetchedUser = await context.read<Account>().get();
       setState(() {
-        user = fetchedUser;
+        //user = fetchedUser;
+        user = models.User(
+         $id: 'mock_id',
+          name: 'mock_name',
+          email: 'mock_email',
+          emailVerification: true,
+          prefs: models.Preferences(data: {}),
+          $createdAt: DateTime.now().toString(),
+          $updatedAt: DateTime.now().toString(),
+          registration: DateTime.now().toString(),
+          status: true,
+          labels: [],
+          passwordUpdate: DateTime.now().toString(),
+          phone: '1234567890',
+          phoneVerification: true,
+          mfa: true,
+          targets: [],
+          accessedAt: DateTime.now().toString(),
+        );
       });
     } catch (e) {
       if (mounted) {
@@ -42,18 +60,18 @@ class _HomePageState extends State<HomePage> {
       children: <Widget>[
         Text("Welcome, ${user?.name}"),
         const SizedBox(height: 10),
-        if (!user!.emailVerification)
-          const Text(
-              "Please verify your account, before the profiling process."),
-        const SizedBox(height: 20),
-        if (!user!.emailVerification)
-          ElevatedButton(
-            onPressed: () {
-              sendVerificationMail(context);
-            },
-            child: const Text("Send verification email"),
-          )
-        else
+        // if (!user!.emailVerification)
+        //   const Text(
+        //       "Please verify your account, before the profiling process."),
+        // const SizedBox(height: 20),
+        // if (!user!.emailVerification)
+        //   ElevatedButton(
+        //     onPressed: () {
+        //       sendVerificationMail(context);
+        //     },
+        //     child: const Text("Send verification email"),
+        //   )
+        // else
           ElevatedButton(
             onPressed: () {
               Navigator.pushNamedAndRemoveUntil(context, '/qna', (_) => false);
