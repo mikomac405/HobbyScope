@@ -77,22 +77,73 @@ class _QuestionPageState extends State<QuestionPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(qna!.questions[qna!.index].question),
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.blue.shade900,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Text(qna!.questions[qna!.index].question,
+                    style: const TextStyle(color: Colors.white)),
+              ),
+            ),
+            const SizedBox(height: 20), //
             ElevatedButton(
-                onPressed: () => updateAnswer(1.0, context),
-                child: const Text("Tak")),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue.shade600,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () => updateAnswer(1.0, context),
+              child: const Text("Tak"),
+            ),
             ElevatedButton(
-                onPressed: () => updateAnswer(0.75, context),
-                child: const Text("Raczej tak")),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue.shade500,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () => updateAnswer(0.75, context),
+              child: const Text("Raczej tak"),
+            ),
             ElevatedButton(
-                onPressed: () => updateAnswer(0.5, context),
-                child: const Text("Nie wiem")),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue.shade400,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () => updateAnswer(0.5, context),
+              child: const Text("Nie wiem"),
+            ),
             ElevatedButton(
-                onPressed: () => updateAnswer(0.25, context),
-                child: const Text("Raczej nie")),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue.shade300,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () => updateAnswer(0.25, context),
+              child: const Text("Raczej nie"),
+            ),
             ElevatedButton(
-                onPressed: () => updateAnswer(0.0, context),
-                child: const Text("Nie")),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue.shade200,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () => updateAnswer(0.0, context),
+              child: const Text("Nie"),
+            ),
           ],
         );
         break;
